@@ -1,0 +1,126 @@
+@charset "UTF-8";
+.navbar-top {
+  width: 100vw;
+  height: 5vh;
+}
+
+.navbar-top .title {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  padding: 4px;
+}
+
+.navbar-top .title img {
+  width: 35px;
+  height: 35px;
+  margin-right: 5px;
+}
+
+.navbar-top .title h4 {
+  padding-top: 2px;
+}
+
+.navbar-container {
+  width: 100vw;
+  height: 6vh;
+  background-color: #ea563e;
+  margin-bottom: 20px;
+}
+
+.navbar-container .navbar {
+  display: flex;
+}
+
+.navbar-container .navbar ul {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  padding-top: 8px;
+  justify-content: end;
+}
+
+.navbar-container .navbar ul li {
+  margin: 0 20px;
+  list-style-type: none;
+}
+
+.navbar-container .navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-container .navbar h5 {
+  width: 50%;
+  font-size: 1rem;
+  color: white;
+}
+
+.container .header {
+  text-align: center;
+  padding: 30px;
+}
+
+.container-form {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.container-form form {
+  position: relative;
+  width: 50vw;
+}
+
+.container-form form .edit-assessment {
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  transform: translateX(50%);
+  padding: 40px;
+  margin-bottom: 30px;
+}
+
+.container-form form .edit-assessment h3 {
+  /* text-align: center; */
+  margin-left: 142px;
+}
+
+.container-form form .edit-question {
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  transform: translateX(50%);
+  padding: 40px;
+  margin-bottom: 30px;
+}
+
+.container-form form .edit-assessment .form-row {
+  justify-content: center;
+}
+
+.container-form form .edit-question .form-row {
+  justify-content: center;
+}
+
+.container-form form .edit-question h3 {
+  /* text-align: center; */
+  margin-left: 142px;
+}
+
+.container-form form .btn {
+  position: absolute;
+  bottom: -60px;
+  right: -50%;
+}
+
+.container-form form .edit-question .delete-icon {
+  position: relative;
+}
+.container-form form .edit-question .delete-icon i {
+  color: #db3434;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 0;
+  bottom: 30px;
+  cursor: pointer;
+}
