@@ -20,20 +20,28 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public QuestionModel getQuestionById(int id) {
-		Optional<QuestionModel> optional = questionRepository.findById(id);
+	public QuestionModel getQuestionById(long question_id) {
+		Optional<QuestionModel> optional = questionRepository.findById(question_id);
 		QuestionModel question = null;
 		if (optional.isPresent()) {
 		question = optional.get();
 		} else {
-		throw new RuntimeException(" Question not found for id :: " + id);
+		throw new RuntimeException(" Question not found for id :: " + question_id);
 		}
 		return question;
 	}
 
+	
+
 	@Override
-	public void deleteQuestionById(int id) {
-		this.questionRepository.deleteById(id);
+	public void saveQuestion(QuestionModel questionModel) {
+		this.questionRepository.save(questionModel);
+		
+	}
+
+	@Override
+	public void deleteQuestionById(long question_id) {
+		// TODO Auto-generated method stub
 		
 	}
 	

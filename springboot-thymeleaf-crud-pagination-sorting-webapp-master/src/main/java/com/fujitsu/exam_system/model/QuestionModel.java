@@ -13,7 +13,7 @@ public class QuestionModel {
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private int questionId;
+	private long question_id;
 	
 	@Column(name = "question_title")
 	private String questionTitle;
@@ -24,12 +24,14 @@ public class QuestionModel {
 	@Column(name = "chosen_answer")
 	private String chosenAnswer;
 
-	public int getQuestionId() {
-		return questionId;
+	
+
+	public long getQuestion_id() {
+		return question_id;
 	}
 
-	public void setQuestionId(int questionId) {
-		this.questionId = questionId;
+	public void setQuestion_id(long question_id) {
+		this.question_id = question_id;
 	}
 
 	public String getQuestionTitle() {

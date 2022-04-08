@@ -17,8 +17,10 @@ public interface QuestionService {
 	
 	List<QuestionModel> getAllQuestion();
 	
-	QuestionModel getQuestionById(int id);
-	void deleteQuestionById(int id);
+	QuestionModel getQuestionById(long question_id);
+	void deleteQuestionById(long question_id);
+
+	void saveQuestion(QuestionModel questionModel);
 	
 	
 	

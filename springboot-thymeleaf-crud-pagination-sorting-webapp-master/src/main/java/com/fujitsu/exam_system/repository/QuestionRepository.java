@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.fujitsu.exam_system.model.QuestionModel;
 
-public interface QuestionRepository extends JpaRepository<QuestionModel, Integer>{
+public interface QuestionRepository extends JpaRepository<QuestionModel, Long>{
 	
 	
 	
