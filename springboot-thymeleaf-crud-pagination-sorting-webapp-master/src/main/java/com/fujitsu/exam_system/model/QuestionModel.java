@@ -13,7 +13,7 @@ public class QuestionModel {
 	
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private long question_id;
+	private long id;
 	
 	@Column(name = "question_title")
 	private String questionTitle;
@@ -23,15 +23,27 @@ public class QuestionModel {
 	
 	@Column(name = "chosen_answer")
 	private String chosenAnswer;
+	
+	@Column(name = "option_one")
+	private String optionOne;
+	
+	@Column(name = "option_two")
+	private String optionTwo;
+	
+	@Column(name = "option_three")
+	private String optionThree;
+	
+	@Column(name = "option_four")
+	private String optionFour;
 
 	
 
-	public long getQuestion_id() {
-		return question_id;
+	public long getId() {
+		return id;
 	}
 
-	public void setQuestion_id(long question_id) {
-		this.question_id = question_id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getQuestionTitle() {
@@ -57,6 +69,40 @@ public class QuestionModel {
 	public void setChosenAnswer(String chosenAnswer) {
 		this.chosenAnswer = chosenAnswer;
 	}
+
+	public String getOptionOne() {
+		return optionOne;
+	}
+
+	public void setOptionOne(String optionOne) {
+		this.optionOne = optionOne;
+	}
+
+	public String getOptionTwo() {
+		return optionTwo;
+	}
+
+	public void setOptionTwo(String optionTwo) {
+		this.optionTwo = optionTwo;
+	}
+
+	public String getOptionThree() {
+		return optionThree;
+	}
+
+	public void setOptionThree(String optionThree) {
+		this.optionThree = optionThree;
+	}
+
+	public String getOptionFour() {
+		return optionFour;
+	}
+
+	public void setOptionFour(String optionFour) {
+		this.optionFour = optionFour;
+	}
+	
+	
 	
 	
 

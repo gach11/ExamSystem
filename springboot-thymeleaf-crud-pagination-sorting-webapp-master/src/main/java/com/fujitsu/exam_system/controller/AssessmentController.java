@@ -15,13 +15,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fujitsu.exam_system.model.AssessmentModel;
+import com.fujitsu.exam_system.model.QuestionModel;
 import com.fujitsu.exam_system.service.AssessmentService;
+import com.fujitsu.exam_system.service.QuestionService;
 
 @Controller
 public class AssessmentController {
 
 	@Autowired
 	private AssessmentService assessmentService;
+	
+	@Autowired
+	private QuestionService questionService;
+	 
+	
 	
 	// display list of employees
 	@GetMapping("/")
@@ -30,41 +37,79 @@ public class AssessmentController {
 		
 	}
 	
-	@GetMapping("/showNewEmployeeForm")
-	public String showNewEmployeeForm(Model model) {
-		// create model attribute to bind form data
-		AssessmentModel assessmentModel = new AssessmentModel();
-		model.addAttribute("employee", assessmentModel);
-		return "new_employee";
-	}
 	
-	@PostMapping("/saveEmployee")
-	public String saveEmployee(@ModelAttribute("employee") AssessmentModel assessmentModel) {
-		// save employee to database
-		assessmentService.saveEmployee(assessmentModel);
+	
+	/*
+	 * @GetMapping("/showNewEmployeeForm") public String showNewEmployeeForm(Model
+	 * model) { // create model attribute to bind form data AssessmentModel
+	 * assessmentModel = new AssessmentModel(); model.addAttribute("employee",
+	 * assessmentModel); return "new_employee"; }
+	 */
+	
+	
+	
+	
+//	@RequestMapping(value="/saveAssessment/{id}", method = {RequestMethod.PUT, RequestMethod.GET} )
+	@PostMapping("/saveAssessment")
+	public String saveAssessment(@ModelAttribute("assessment") AssessmentModel assessmentModel, QuestionModel questionModel) {
+//	public String saveAssessment(@PathVariable (value = "id") long id, Model model) {		
+		
+		questionService.saveQuestion(questionModel);
+		assessmentService.saveAssessment(assessmentModel);
 		return "redirect:/";
 	}
 	
+	
+	
+	
+	
+	/*
+	 * @PostMapping("/saveQuestion") public String
+	 * saveQuestion(@ModelAttribute("question") QuestionModel questionModel) { //
+	 * public String saveAssessment(@PathVariable (value = "id") long id, Model
+	 * model) { // save employee to database
+	 * 
+	 * 
+	 * return "update"; }
+	 */
+	
+	
+	
+	
+	
 	@GetMapping("/showFormForUpdate/{id}")
-	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {
-		
-		// get employee from the service
-		AssessmentModel assessmentModel = assessmentService.getEmployeeById(id);
+	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {		
+	// get employee from the service
+		AssessmentModel assessmentModel = assessmentService.getAssessmentById(id);
+		QuestionModel questionModel = questionService.getQuestionById(id);
 		
 		// set employee as a model attribute to pre-populate the form
-		model.addAttribute("employee", assessmentModel);
+		model.addAttribute("question", questionModel);
+		model.addAttribute("assessment", assessmentModel);
 		return "update";
 	}
 	
 //	@GetMapping("/deleteEmployee/{id}")
-	@RequestMapping(value="/deleteEmployee/{id}", method = {RequestMethod.DELETE, RequestMethod.GET} )
-	public String deleteEmployee(@PathVariable (value = "id") long id) {
+	@RequestMapping(value="/deleteAssessment/{id}", method = {RequestMethod.DELETE, RequestMethod.GET} )
+	public String deleteAssessment(@PathVariable (value = "id") long id) {
 		
 		// call delete employee method 
-		this.assessmentService.deleteEmployeeById(id);
+		
+		this.assessmentService.deleteAssessmentById(id);
 		return "redirect:/";
 	}
 	
+	@RequestMapping(value="/deleteQuestion/{id}", method = {RequestMethod.DELETE, RequestMethod.GET} )
+	public String deleteQuestion(@PathVariable (value = "id") long id) {
+		
+		// call delete employee method 
+		this.questionService.deleteQuestionById(id);
+		
+		return "redirect:/";
+	}
+	
+	
+
 	
 	@GetMapping("/page/{pageNo}")
 	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
@@ -74,7 +119,7 @@ public class AssessmentController {
 		int pageSize = 100;
 		
 		Page<AssessmentModel> page = assessmentService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<AssessmentModel> listEmployees = page.getContent();
+		List<AssessmentModel> listAssessment = page.getContent();
 		
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
@@ -83,8 +128,9 @@ public class AssessmentController {
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		model.addAttribute("listEmployees", listEmployees);
+		model.addAttribute("listAssessment", listAssessment);
 		
+		System.out.print("listAssessment: " + listAssessment.get(1).getExamTitle());
 		return "index";
 	}
 }

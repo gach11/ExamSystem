@@ -20,17 +20,17 @@ public class AssessmentServiceImpl implements AssessmentService {
 	private AssessmentRepository assessmentRepository;
 
 	@Override
-	public List<AssessmentModel> getAllEmployees() {
+	public List<AssessmentModel> getAllAssessment() {
 		return assessmentRepository.findAll();
 	}
 
 	@Override
-	public void saveEmployee(AssessmentModel assessmentModel) {
+	public void saveAssessment(AssessmentModel assessmentModel) {
 		this.assessmentRepository.save(assessmentModel);
 	}
 
 	@Override
-	public AssessmentModel getEmployeeById(long id) {
+	public AssessmentModel getAssessmentById(long id) {
 		Optional<AssessmentModel> optional = assessmentRepository.findById(id);
 		AssessmentModel assessmentModel = null;
 		if (optional.isPresent()) {
@@ -42,7 +42,7 @@ public class AssessmentServiceImpl implements AssessmentService {
 	}
 
 	@Override
-	public void deleteEmployeeById(long id) {
+	public void deleteAssessmentById(long id) {
 		this.assessmentRepository.deleteById(id);
 	}
 

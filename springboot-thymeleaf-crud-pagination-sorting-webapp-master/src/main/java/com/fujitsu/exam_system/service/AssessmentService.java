@@ -7,9 +7,9 @@ import org.springframework.data.domain.Page;
 import com.fujitsu.exam_system.model.AssessmentModel;
 
 public interface AssessmentService {
-	List<AssessmentModel> getAllEmployees();
-	void saveEmployee(AssessmentModel assessmentModel);
-	AssessmentModel getEmployeeById(long id);
-	void deleteEmployeeById(long id);
+	List<AssessmentModel> getAllAssessment();
+	void saveAssessment(AssessmentModel assessmentModel);
+	AssessmentModel getAssessmentById(long id);
+	void deleteAssessmentById(long id);
 	Page<AssessmentModel> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection);
 }
