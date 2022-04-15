@@ -33,8 +33,7 @@ public class AssessmentController {
 	// display list of employees
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
-		return findPaginated(1, "examTitle", "asc", model);	
-		
+		return findPaginated(1, "examTitle", "asc", model);		
 	}
 	
 	
@@ -78,13 +77,17 @@ public class AssessmentController {
 	
 	
 	@GetMapping("/showFormForUpdate/{id}")
-	public String showFormForUpdate(@PathVariable ( value = "id") long id, Model model) {		
+	public String showFormForUpdate(@PathVariable ( value = "id" ) long id, Model model)		{		
+		
 	// get employee from the service
 		AssessmentModel assessmentModel = assessmentService.getAssessmentById(id);
 		QuestionModel questionModel = questionService.getQuestionById(id);
+
+		List<QuestionModel> questionList = questionService.getAllQuestion();
 		
-		// set employee as a model attribute to pre-populate the form
+		// set question and assessment as a model attribute to pre-populate the form
 		model.addAttribute("question", questionModel);
+		System.out.print("questionMethod: " + questionList.get(0).getId());
 		model.addAttribute("assessment", assessmentModel);
 		return "update";
 	}
@@ -93,7 +96,7 @@ public class AssessmentController {
 	@RequestMapping(value="/deleteAssessment/{id}", method = {RequestMethod.DELETE, RequestMethod.GET} )
 	public String deleteAssessment(@PathVariable (value = "id") long id) {
 		
-		// call delete employee method 
+		// call delete assessment method 
 		
 		this.assessmentService.deleteAssessmentById(id);
 		return "redirect:/";
@@ -102,15 +105,13 @@ public class AssessmentController {
 	@RequestMapping(value="/deleteQuestion/{id}", method = {RequestMethod.DELETE, RequestMethod.GET} )
 	public String deleteQuestion(@PathVariable (value = "id") long id) {
 		
-		// call delete employee method 
+		// call delete question method 
 		this.questionService.deleteQuestionById(id);
 		
-		return "redirect:/";
+		return "update";
 	}
 	
-	
 
-	
 	@GetMapping("/page/{pageNo}")
 	public String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
 			@RequestParam("sortField") String sortField,
@@ -119,18 +120,16 @@ public class AssessmentController {
 		int pageSize = 100;
 		
 		Page<AssessmentModel> page = assessmentService.findPaginated(pageNo, pageSize, sortField, sortDir);
-		List<AssessmentModel> listAssessment = page.getContent();
-		
+		List<AssessmentModel> listAssessment = page.getContent();	
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
-		model.addAttribute("totalItems", page.getTotalElements());
-		
+		model.addAttribute("totalItems", page.getTotalElements());	
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
 		model.addAttribute("listAssessment", listAssessment);
 		
-		System.out.print("listAssessment: " + listAssessment.get(1).getExamTitle());
+		System.out.print("LIST ASSESSMENT: " + listAssessment.get(0).getId());
 		return "index";
 	}
 }

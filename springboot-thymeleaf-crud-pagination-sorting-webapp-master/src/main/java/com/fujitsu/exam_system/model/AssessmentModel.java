@@ -1,13 +1,11 @@
 package com.fujitsu.exam_system.model;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,9 +25,7 @@ public class AssessmentModel {
 	@Column(name = "exam_questiontype")
 	private String questionType;
 	
-	@OneToMany
-	private List<QuestionModel> questionModel;
-	
+
 
 	public long getId() {
 		return id;

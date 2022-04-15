@@ -16,7 +16,7 @@ public interface QuestionService {
 	QuestionModel getQuestionById(long id);
 	void deleteQuestionById(long id);
 	void saveQuestion(QuestionModel questionModel);
-	Page<QuestionModel> findPaginated(int pageNo, int pageSize, String sortField, String sortDir);
+	
 	
 	
 

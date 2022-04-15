@@ -44,7 +44,7 @@
     <div class="container-form">
   
        
-      <form action="#" th:action="@{/saveAssessment}" th:object="${assessment}" 
+      <form class="form" action="#" th:action="@{/saveAssessment}" th:object="${assessment}" 
 			method="POST">
             <div class="edit-assessment">
                 <h3>Edit Assessment</h3>
@@ -77,8 +77,8 @@
                 <h3>Edit Question</h3>  
   				  <input type="hidden" th:field="${question.id}" />
                 <!-- DELETE -->
-                    <div class="delete-icon"> <i class="fas fa-trash-alt"><a th:href="@{/deleteQuestion/{id}(id=${question.id})}"></a>
-                       </i>
+                    <div class="delete-icon"><a th:href="@{/deleteQuestion/{id}(id=${question.id})}"><i class="fas fa-trash-alt"></i></a>
+                       
                     </div> 
 			
               <div class="form-row">
@@ -117,9 +117,9 @@
                 </div>
             </div>  
 
-                <button type="submit" id="updateId" class="btn btn-success updateBtn">Update</button>
+                <a type="submit" id="updateId" class="btn btn-success updateBtn">Update</a>
         </form>     
-</div>
+</div><br><br><br><br><br><br>
 
 	<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
