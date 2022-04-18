@@ -38,6 +38,7 @@ public class AssessmentController {
 	
 	
 	
+	
 	/*
 	 * @GetMapping("/showNewEmployeeForm") public String showNewEmployeeForm(Model
 	 * model) { // create model attribute to bind form data AssessmentModel
@@ -83,11 +84,14 @@ public class AssessmentController {
 		AssessmentModel assessmentModel = assessmentService.getAssessmentById(id);
 		QuestionModel questionModel = questionService.getQuestionById(id);
 
-		List<QuestionModel> questionList = questionService.getAllQuestion();
+		List<QuestionModel> questionList = questionService.getAllQuestion();	
+		for(int i=0;i<questionList.size();i++){
+		    System.out.println("Loop output :: "+ questionList.get(i).getId());
+		} 
 		
-		// set question and assessment as a model attribute to pre-populate the form
-		model.addAttribute("question", questionModel);
 		System.out.print("questionMethod: " + questionList.get(0).getId());
+		// set question and assessment as a model attribute to pre-populate the form
+		model.addAttribute("question", questionList);
 		model.addAttribute("assessment", assessmentModel);
 		return "update";
 	}

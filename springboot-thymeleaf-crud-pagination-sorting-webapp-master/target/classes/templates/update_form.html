@@ -95,9 +95,9 @@
         </thead>
         <tbody>
         
-          <tr th:each="assessment : ${listAssessment}">
-					<td th:text="${assessment.examTitle}"></td>
-					<td th:text="${assessment.examDescription}"></td>            
+          <tr th:each="question : ${questionList}">
+					<td th:text="${question.questionTitle}"></td>
+					<td th:text="${question.correctAnswer}"></td>            
                 <td>
                     <a href="form.html" class="btn btn-success btn-sm" role="button" aria-pressed="true">Edit</a>
 					<a href="form.html" class="btn btn-danger btn-sm" role="button" aria-pressed="true">Delete</a></td>     

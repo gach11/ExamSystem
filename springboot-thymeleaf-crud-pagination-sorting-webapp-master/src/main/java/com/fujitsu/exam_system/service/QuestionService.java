@@ -11,7 +11,7 @@ import com.fujitsu.exam_system.model.QuestionModel;
 public interface QuestionService {
 	
 	
-	List<QuestionModel> getAllQuestion();
+	List<QuestionModel> getAllQuestion(long id);
 	
 	QuestionModel getQuestionById(long id);
 	void deleteQuestionById(long id);
