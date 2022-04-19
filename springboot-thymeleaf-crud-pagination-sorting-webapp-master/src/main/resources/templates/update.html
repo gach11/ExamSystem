@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" type="text/css"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+  
     <script src="https://kit.fontawesome.com/941bc476f9.js" crossorigin="anonymous"></script>
     <title>Edit Assessment</title>
 </head>
@@ -43,9 +46,9 @@
 
     <div class="container-form">
   
-       
-      <form class="form" action="#" th:action="@{/saveAssessment}" th:object="${assessment}" 
+       <form class="formdel" action="#" th:action="@{/saveAssessment}" th:object="${assessment}" 
 			method="POST">
+      
             <div class="edit-assessment">
                 <h3>Edit Assessment</h3>
                 <input type="hidden" th:field="*{id}" />
@@ -68,17 +71,16 @@
                     <input class="form-control" th:field="*{questionType}" type="text" placeholder="Multiple Choice" readonly>
                 </div>
               </div><br> 
-            </div>
-        
+            </div>  
           
     
             <!-- Edit Question -->
-              <div class="edit-question" th:each="question : ${questionList}">
+              <div class="edit-question">
                 <h3>Edit Question</h3>  
   				  <input type="hidden" th:field="${question.id}" />
                 <!-- DELETE -->
-                    <div class="delete-icon"><a th:href="@{/deleteQuestion/{id}(id=${question.id})}"><i class="fas fa-trash-alt"></i></a>
-                       
+                    <div class="delete-icon"><a class="deleteBtn" th:href="@{/deleteQuestion/{id}(id=${question.id})}"><i class="fas fa-trash-alt"></i></a> 
+                     <!--    th:href="@{/deleteQuestion/{id}(id=${question.id})}" --> 
                     </div> 
 			
               <div class="form-row">
@@ -115,51 +117,50 @@
                     <div class="invalid-feedback">Text field is required</div>
                   </div>
                 </div>
-            </div>  
+            </div>  <button type="submit" class="btn btn-success">Update</button>
+        </form> 
+        
 
-                <a type="submit" id="updateId" class="btn btn-success updateBtn">Update</a>
-        </form>     
+                  
 </div><br><br><br><br><br><br>
 
-	<div class="modal fade" id="myModalUpdate" tabindex="-1" role="dialog">
+	 <div class="modal fade" id="myModalDel" tabindex="-1" role="dialog">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Update Confirmation</h5>
+					<h5 class="modal-title">Delete Confirmation</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Are you sure you want to update it?</p>
+					<p>Are you sure you want to Delete it?</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-sm btn-secondary"
 						data-dismiss="modal">Cancel</button>
-					<a href="" class="btn btn-sm btn-success" id="updateref">Update</a>
+					<a href="" class="btn btn-sm btn-danger" id="deleteRef">Delete</a>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> 
 	
-<!-- 
-	<script type="text/javascript" src="js/main.js"></script> -->
+<script type="text/javascript" src="../js/main.js"></script>	
    <script type="text/javascript"
 		src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script type="text/javascript"
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-   	<script>
-	$('.form .updateBtn').on('click', function(event) {
-		 	/* event.preventDefault();
-			var hrefUpdate = $(this).attr('href');
-			$('#myModalUpdate #updateref').attr('href', hrefUpdate); */ 
-			$('#myModalUpdate').modal(); 
-			console.log("updateBtn");
-		});
-		</script>
+  
+  	<script
+		src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+	
 
 </body>
 </html>

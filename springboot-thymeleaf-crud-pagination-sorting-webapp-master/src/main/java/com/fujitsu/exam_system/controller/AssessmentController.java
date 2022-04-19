@@ -29,25 +29,13 @@ public class AssessmentController {
 	private QuestionService questionService;
 	 
 	
-	
 	// display list of employees
 	@GetMapping("/")
 	public String viewHomePage(Model model) {
 		return findPaginated(1, "examTitle", "asc", model);		
 	}
 	
-	
-	
-	
-	/*
-	 * @GetMapping("/showNewEmployeeForm") public String showNewEmployeeForm(Model
-	 * model) { // create model attribute to bind form data AssessmentModel
-	 * assessmentModel = new AssessmentModel(); model.addAttribute("employee",
-	 * assessmentModel); return "new_employee"; }
-	 */
-	
-	
-	
+
 	
 //	@RequestMapping(value="/saveAssessment/{id}", method = {RequestMethod.PUT, RequestMethod.GET} )
 	@PostMapping("/saveAssessment")
@@ -59,23 +47,7 @@ public class AssessmentController {
 		return "redirect:/";
 	}
 	
-	
-	
-	
-	
-	/*
-	 * @PostMapping("/saveQuestion") public String
-	 * saveQuestion(@ModelAttribute("question") QuestionModel questionModel) { //
-	 * public String saveAssessment(@PathVariable (value = "id") long id, Model
-	 * model) { // save employee to database
-	 * 
-	 * 
-	 * return "update"; }
-	 */
-	
-	
-	
-	
+
 	
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id" ) long id, Model model)		{		
@@ -83,18 +55,21 @@ public class AssessmentController {
 	// get employee from the service
 		AssessmentModel assessmentModel = assessmentService.getAssessmentById(id);
 		QuestionModel questionModel = questionService.getQuestionById(id);
-
-		List<QuestionModel> questionList = questionService.getAllQuestion();	
-		for(int i=0;i<questionList.size();i++){
-		    System.out.println("Loop output :: "+ questionList.get(i).getId());
-		} 
 		
-		System.out.print("questionMethod: " + questionList.get(0).getId());
+		/*
+		 * List<QuestionModel> questionList = questionService.getAllQuestion(); for(int
+		 * i=0;i<questionList.size();i++){ System.out.println("Loop output :: "+
+		 * questionList.get(i).getId()); }
+		 * 
+		 * System.out.print("questionMethod: " + questionList.get(0).getId());
+		 */
+		
 		// set question and assessment as a model attribute to pre-populate the form
-		model.addAttribute("question", questionList);
+		model.addAttribute("question", questionModel);
 		model.addAttribute("assessment", assessmentModel);
 		return "update";
 	}
+	
 	
 //	@GetMapping("/deleteEmployee/{id}")
 	@RequestMapping(value="/deleteAssessment/{id}", method = {RequestMethod.DELETE, RequestMethod.GET} )
@@ -112,7 +87,7 @@ public class AssessmentController {
 		// call delete question method 
 		this.questionService.deleteQuestionById(id);
 		
-		return "update";
+		return "redirect:/";
 	}
 	
 
@@ -121,8 +96,7 @@ public class AssessmentController {
 			@RequestParam("sortField") String sortField,
 			@RequestParam("sortDir") String sortDir,
 			Model model) {
-		int pageSize = 100;
-		
+		int pageSize = 100;	
 		Page<AssessmentModel> page = assessmentService.findPaginated(pageNo, pageSize, sortField, sortDir);
 		List<AssessmentModel> listAssessment = page.getContent();	
 		model.addAttribute("currentPage", pageNo);
@@ -131,8 +105,7 @@ public class AssessmentController {
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		model.addAttribute("listAssessment", listAssessment);
-		
+		model.addAttribute("listAssessment", listAssessment);		
 		System.out.print("LIST ASSESSMENT: " + listAssessment.get(0).getId());
 		return "index";
 	}

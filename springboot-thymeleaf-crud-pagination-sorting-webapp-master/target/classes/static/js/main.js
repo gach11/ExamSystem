@@ -15,6 +15,20 @@ $(document).ready(function() {
 	
 	
 	
+		$('.formdel .deleteBtn').on('click', function(event) {
+		event.preventDefault();
+		var hrefDel = $(this).attr('href');
+		$('#myModalDel #deleteRef').attr('href',  hrefDel);  
+		$('#myModalDel').modal();
+		console.log("Delete btn main2.js");
+	});
+	
+	
+	
+	
+	
+	
+	
 	
 	$('#updateId .updateBtn').on('click', function(event) {
 	/** 	event.preventDefault();

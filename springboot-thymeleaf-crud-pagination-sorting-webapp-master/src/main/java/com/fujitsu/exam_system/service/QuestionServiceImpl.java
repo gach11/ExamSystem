@@ -3,15 +3,9 @@ package com.fujitsu.exam_system.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.fujitsu.exam_system.model.QuestionModel;
 import com.fujitsu.exam_system.repository.QuestionRepository;
 
@@ -23,8 +17,8 @@ public class QuestionServiceImpl implements QuestionService {
 	
 	
 	@Override
-	public List<QuestionModel> getAllQuestion(long id) {				
-		return questionRepository.findAllById(id);
+	public List<QuestionModel> getAllQuestion() {				
+		return questionRepository.findAll();
 	}
 
 	@Override
