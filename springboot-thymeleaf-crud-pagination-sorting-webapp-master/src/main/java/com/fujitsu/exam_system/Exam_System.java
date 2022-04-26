@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan ({"com.fujitsu.exam_system"})
 @EnableAutoConfiguration
 
+
 public class Exam_System {
 
 	public static void main(String[] args) {

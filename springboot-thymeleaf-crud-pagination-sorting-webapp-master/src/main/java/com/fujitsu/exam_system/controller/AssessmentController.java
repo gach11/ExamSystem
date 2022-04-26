@@ -2,8 +2,13 @@ package com.fujitsu.exam_system.controller;
 
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +25,7 @@ import com.fujitsu.exam_system.service.AssessmentService;
 import com.fujitsu.exam_system.service.QuestionService;
 
 @Controller
-public class AssessmentController {
+public class AssessmentController implements ErrorController{
 
 	@Autowired
 	private AssessmentService assessmentService;
@@ -34,6 +39,26 @@ public class AssessmentController {
 	public String viewHomePage(Model model) {
 		return findPaginated(1, "examTitle", "asc", model);		
 	}
+	
+	
+	@RequestMapping("/error")
+	public String handleError(HttpServletRequest request) {
+	    Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+	    
+	    if (status != null) {
+	        Integer statusCode = Integer.valueOf(status.toString());
+	    
+	        if(statusCode == HttpStatus.NOT_FOUND.value()) {
+	            return "new_employee";
+	        }
+	        else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+	            return "error";
+	        }
+	    }
+	    return "new_employee";
+	}
+	
+	
 	
 
 	
@@ -108,5 +133,12 @@ public class AssessmentController {
 		model.addAttribute("listAssessment", listAssessment);		
 		System.out.print("LIST ASSESSMENT: " + listAssessment.get(0).getId());
 		return "index";
+	}
+
+
+	@Override
+	public String getErrorPath() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

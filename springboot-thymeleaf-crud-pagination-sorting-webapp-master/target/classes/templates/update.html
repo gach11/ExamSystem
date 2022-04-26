@@ -46,7 +46,7 @@
 
     <div class="container-form">
   
-       <form class="formdel" action="#" th:action="@{/saveAssessment}" th:object="${assessment}" 
+       <form class="formdel" action="#" th:action="@{/saveAssessment}"  th:object="${assessment}" 
 			method="POST">
       
             <div class="edit-assessment">
@@ -86,38 +86,38 @@
               <div class="form-row">
                   <div class="form-group col-8">     
                       <label for="inputAddress">Question Title</label>
-                      <input type="text" th:field="${question.questionTitle}" class="form-control" id="inputAddress" placeholder="Enter question title">
+                      <input type="text" th:field="${question.questionTitle}" class="form-control" id="questionTitle" placeholder="Enter question title">
                       <div class="invalid-feedback">Text field is required</div>
                   </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-4">              
-                  <input type="text"  th:field="${question.optionOne}"   class="form-control" id="inputEmail4" placeholder="Option 1" >
+                  <input type="text"  th:field="${question.optionOne}"   class="form-control" id="optionOne" placeholder="Option 1"  required>
                   <div class="invalid-feedback">Text field is required</div>
                 </div>
                 <div class="form-group col-4">              
-                  <input type="text" th:field="${question.optionTwo}"  class="form-control" id="inputPassword4" placeholder="Option 2" >
+                  <input type="text" th:field="${question.optionTwo}"  class="form-control" id="optionTwo" placeholder="Option 2"  required >
                   <div class="invalid-feedback">Text field is required</div>
                 </div>
               </div>
               <div class="form-row">
                   <div class="form-group col-4">            
-                    <input type="text" th:field="${question.optionThree}"  class="form-control" id="inputEmail4" placeholder="Option 3" >
+                    <input type="text" th:field="${question.optionThree}"  class="form-control" id="optionThree" placeholder="Option 3"  required>
                     <div class="invalid-feedback">Text field is required</div>
                   </div>
                   <div class="form-group col-4">               
-                    <input type="text" th:field="${question.optionFour}"  class="form-control" id="inputPassword4" placeholder="Option 4" >
+                    <input type="text" th:field="${question.optionFour}"  class="form-control" id="optionFour" placeholder="Option 4"  required>
                     <div class="invalid-feedback">Text field is required</div>
                   </div>
                 </div>  
                 <div class="form-row">       
                   <div class="form-group col-8">  
                       <label for="inputAddress">Correct Answer</label>             
-                    <input type="text" th:field="${question.correctAnswer}"  class="form-control" id="inputPassword4" placeholder="Option 4">
+                    <input type="text" th:field="${question.correctAnswer}"  class="form-control" id="correctAnswer" placeholder="Option 4"  required>
                     <div class="invalid-feedback">Text field is required</div>
                   </div>
                 </div>
-            </div>  <button type="submit" onclick="checker()" class="btn btn-success updateBtn"  >Update</button>
+            </div>  <button type="submit" onClick="checker()" class="btn btn-success updateBtn"  >Update</button>
         </form> 
         
 
@@ -148,30 +148,7 @@
 	
 	<br><br><br><br><br><br>
 	
-	<!-- Modal -->
-	<div id="success_tic" class="modal fade" role="dialog">
-		<div class="modal-dialog">
 
-			<!-- Modal content-->
-			<div class="modal-content">
-				<a class="close" href="#" data-dismiss="modal">&times;</a>
-				<div class="page-body">
-					<div class="head">
-						<h3 style="margin-top: 5px;">Lorem ipsum dolor sit amet</h3>
-						<h4>Lorem ipsum dolor sit amet</h4>
-					</div>
-
-					<h1 style="text-align: center;">
-						<div class="checkmark-circle">
-							<div class="background"></div>
-							<div class="checkmark draw"></div>
-						</div>
-						<h1>
-				</div>
-			</div>
-		</div>
-
-	</div>
 
 	<script type="text/javascript" src="../js/main.js"></script>	
    <script type="text/javascript"
@@ -191,11 +168,11 @@
 	<script>
 	function checker(){
 		var result = confirm('Are you sure?');
-		if(result==false){
-			event.preventDefault();
-		}
+			if(result==false){
+				event.preventDefault();
+			}
 	}
-
+		
 		</script>
 	
 </body>
